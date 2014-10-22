@@ -17,6 +17,10 @@
         <property name="username" value="sa" />
         <property name="password" value="" />
         </bean>
+        <jdbc:initialize-database data-source="dataSource">
+            <jdbc:script location="create-tables.sql"/>
+            <jdbc:script location="data-script.sql"/>
+        </jdbc:initialize-database>
 
 
 
