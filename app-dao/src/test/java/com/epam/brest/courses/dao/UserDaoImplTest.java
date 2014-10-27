@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/testApplicationContextSpring.xml"})
+@ContextConfiguration(locations = {"classpath:/spring-dao-test.xml"})
 
 public class UserDaoImplTest {
 
@@ -35,6 +35,18 @@ public class UserDaoImplTest {
         users = userDao.getUsers();
         assertEquals(sizeBefore, users.size() - 1);
         //реализовать удаление и сделать тест
+
+    }
+    @Test
+    public void removeUser(){
+
+    }
+    @Test
+    public void getUserById(){
+
+    }
+    @Test
+    public void getUserByLogin(){
 
     }
 }
