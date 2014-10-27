@@ -2,6 +2,8 @@ package com.epam.brest.courses.service;
 
 import com.epam.brest.courses.dao.UserDao;
 import com.epam.brest.courses.domain.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.util.Assert;
 
@@ -12,6 +14,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
@@ -33,11 +36,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByLogin(String login) {
+        LOGGER.debug("getUserByLogin({})", login);
         User user = null;
         try {
             user = userDao.getUserByLogin(login);
         } catch (EmptyResultDataAccessException e) {
-            //TODO: add logger
+            LOGGER.error("getUserByLogin({})", login);
         }
         return user;
     }

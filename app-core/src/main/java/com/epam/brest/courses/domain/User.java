@@ -31,6 +31,15 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
+    public User(){
+
+    }
+
+    public User(Long userId, String login, String name) {
+        this.userId = userId;
+        this.login = login;
+        this.name = name;
+    }
 
     @Override
     public String toString() {
