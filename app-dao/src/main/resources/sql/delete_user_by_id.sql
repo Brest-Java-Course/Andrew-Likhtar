@@ -1,1 +1,1 @@
-delete from USER where userid = ?
+delete from USER where userid =
