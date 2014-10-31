@@ -21,14 +21,17 @@ import java.util.Map;
  */
 public class UserDaoImpl implements UserDao {
 
-    @Value("#{T(org.apache.commons.io.FileUtils).readFileToString((new org.springframework.core.io.ClassPathResource('${insert_into_user_path}', '${delete_user_by_id_path}', '${update_user_path}', '${select_user_by_login_path}', '${select_all_users_path}', '${select_user_by_id_path}')).file)}")
+    @Value("#{T(org.apache.commons.io.FileUtils).readFileToString((new org.springframework.core.io.ClassPathResource('${insert_into_user_path}')).file)}")
     public String addNewUserSql;
-
+    @Value("#{T(org.apache.commons.io.FileUtils).readFileToString((new org.springframework.core.io.ClassPathResource('${delete_user_by_id_path}')).file)}")
     public String delete_user_by_id;
+    @Value("#{T(org.apache.commons.io.FileUtils).readFileToString((new org.springframework.core.io.ClassPathResource('${update_user_path}')).file)}")
     public String update_user;
-
+    @Value("#{T(org.apache.commons.io.FileUtils).readFileToString((new org.springframework.core.io.ClassPathResource('${select_user_by_login_path}')).file)}")
     public String select_user_by_login;
+    @Value("#{T(org.apache.commons.io.FileUtils).readFileToString((new org.springframework.core.io.ClassPathResource('${select_all_users_path}')).file)}")
     public String select_all_users;
+    @Value("#{T(org.apache.commons.io.FileUtils).readFileToString((new org.springframework.core.io.ClassPathResource('${select_user_by_id_path}')).file)}")
     public String select_user_by_id;
 
     public static final String USER_ID = "userid";
