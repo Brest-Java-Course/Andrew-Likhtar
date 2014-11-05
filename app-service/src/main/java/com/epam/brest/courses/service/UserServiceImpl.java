@@ -6,22 +6,23 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.util.Assert;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
-/**
- * Created by Artificial on 24.10.14.
- */
+
+
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
     private static final Logger LOGGER = LogManager.getLogger();
+
+    private UserDao userDao;
 
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
 
     @Override
-    public void addUser(User user) {
+    public Long addUser(User user) {
         Assert.notNull(user);
         Assert.isNull(user.getUserId());
         Assert.notNull(user.getLogin(), "User login should be specified.");
@@ -30,19 +31,39 @@ public class UserServiceImpl implements UserService {
         if (existingUser != null) {
             throw new IllegalArgumentException("User is present in DB");
         }
-        userDao.addUser(user);
+        return userDao.addUser(user);
     }
 
 
     @Override
     public User getUserByLogin(String login) {
-        LOGGER.debug("getUserByLogin({})", login);
+        LOGGER.debug("getUserByLogin({}) ", login);
         User user = null;
         try {
             user = userDao.getUserByLogin(login);
         } catch (EmptyResultDataAccessException e) {
-            LOGGER.error("getUserByLogin({})", login);
+            LOGGER.error("getUserByLogin({}) ", login);
         }
         return user;
+    }
+
+    @Override
+    public User getUserById(long userId) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public List<User> getUsers() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void updateUser(User user) {
+
+    }
+
+    @Override
+    public void removeUser(Long userId) {
+
     }
 }
